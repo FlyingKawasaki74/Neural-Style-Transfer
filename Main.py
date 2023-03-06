@@ -70,7 +70,7 @@ if __name__=="__main__":
             # Use rescaled image in following steps
             input_file_path = new_filename
 
-        abbreviated_filename = input_file_path[:20]
+        abbreviated_filename = input_file_path[:30]
         if not os.path.exists("./Output/" + abbreviated_filename):
             # if the demo_folder directory is not present
             # then create it.
