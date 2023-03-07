@@ -61,7 +61,7 @@ if __name__=="__main__":
             flag_is_original_size = False
             img = Image.open(input_file_directory_path+"/"+input_file_path)
             size = width/2, height/2
-            new_filename = "SMALLER_"+ input_file_path
+            new_filename = "SMALLER_"+ os.path.splitext(input_file_path)[0]+".jpg"
             img.thumbnail(size, Image.Resampling.LANCZOS)
             img.save(input_file_directory_path+"/"+new_filename, "JPEG")
             # Delete previously created temporary file
