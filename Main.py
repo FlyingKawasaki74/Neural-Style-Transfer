@@ -1,3 +1,4 @@
+
 import matplotlib.pylab as plt
 from API import transfer_style
 import os
@@ -76,10 +77,16 @@ if __name__=="__main__":
             # then create it.
             os.makedirs("./Output/" + abbreviated_filename)
         for input_style_path in os.listdir(input_style_directory_path):
-            img = transfer_style(input_file_directory_path+"/"+input_file_path,
-                                 input_style_directory_path + "/" + input_style_path,
-                                 model_directory_path)
-            plt.imsave('./Output/' + abbreviated_filename + "/" + abbreviated_filename + "_" + input_style_path + ".jpeg",img)
+            output_path = './Output/' + abbreviated_filename + "/" + abbreviated_filename + "_" + input_style_path + ".jpeg"
+            if not os.path.exists(output_path):
+                img = transfer_style(input_file_directory_path + "/" + input_file_path,
+                                     input_style_directory_path + "/" + input_style_path,
+                                     model_directory_path)
+
+                plt.imsave(output_path, img)
+            else:
+                print("Image already exists, skipping "+output_path)
+
         if (flag_is_rgb == False or flag_is_original_size == False):
             # Remove converted temporary image
             os.remove(input_file_directory_path+"/"+input_file_path)
